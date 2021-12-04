@@ -1,0 +1,21 @@
+<div mat-dialog-content>
+  <p>Autor</p>
+  <mat-form-field appearance="fill">
+    <mat-label></mat-label>
+    <input matInput [(ngModel)]="data.author">
+  </mat-form-field>
+  <p>Titel</p>
+  <mat-form-field appearance="fill">
+    <mat-label></mat-label>
+    <input matInput [(ngModel)]="data.title">
+  </mat-form-field>
+  <p>Text</p>
+  <mat-form-field appearance="fill">
+    <mat-label></mat-label>
+    <input matInput [(ngModel)]="data.text">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Abbrechen</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+  <form [formGroup]="memoForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="standard">
+        <mat-label>Autor</mat-label>
+        <input matInput class="form-control" id="author" formControlName="author" type="text" >
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Titel</mat-label>
+        <input matInput class="form-control" id="text" formControlName="title" type="text" >
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Text</mat-label>
+        <input matInput class="form-control" id="text" formControlName="text" type="text" >
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+
+    <button class="button" type="submit" [disabled]="!memoForm.valid">Abschicken</button>
+  </form>
+  <ng-container *ngIf="memos">
+      <div *ngFor="let memo of memos" class="memo">
+        <div class="row">
+          <div class="col-sm">Titel: {{memo.title}}</div>
+          <div class="col-sm">Autor: {{memo.author}}</div>
+          <mat-icon class="edit" matSuffix (click)="openDialog(memo.id)">mode_edit_outline</mat-icon>
+          <mat-icon class="delete" matSuffix (click)="delete(memo.id)">delete</mat-icon>
+        </div>
+        <div class="row">
+          <div class="col-sm">Datum: {{memo.date}}</div>
+          <div class="col-sm">Id: {{memo.id}}</div>
+        </div>
+        <div class="text">{{memo.text}}</div>
+
+      </div>
+  </ng-container>
+<div>
