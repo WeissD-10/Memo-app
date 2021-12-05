@@ -23,8 +23,8 @@
         <div class="row">
           <div class="col-sm">Titel: {{memo.title}}</div>
           <div class="col-sm">Autor: {{memo.author}}</div>
-          <mat-icon class="edit" matSuffix (click)="openDialog(memo.id)">mode_edit_outline</mat-icon>
-          <mat-icon class="delete" matSuffix (click)="delete(memo.id)">delete</mat-icon>
+          <mat-icon class="interaction edit" matSuffix (click)="openDialog(memo.id)">mode_edit_outline</mat-icon>
+          <mat-icon class="interaction delete" matSuffix (click)="delete(memo.id)">delete</mat-icon>
         </div>
         <div class="row">
           <div class="col-sm">Datum: {{memo.date}}</div>

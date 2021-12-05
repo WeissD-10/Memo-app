@@ -3,12 +3,12 @@ import { CreateMemoDto, MemoDto } from 'src/dtos/memo-dto';
 
 var md5 = require('md5');
 
-const memoStorage = new Array<MemoDto>();
-
 @Injectable()
 export class MemoService {
+  memoStorage = new Array<MemoDto>();
+
   getMemos(): MemoDto[]{
-    return memoStorage;
+    return this.memoStorage;
   }
 
   getMemoById(id: string): MemoDto {
@@ -26,23 +26,23 @@ export class MemoService {
   createMemo(memo: CreateMemoDto): MemoDto {
     const createMemo = memo as MemoDto;
     createMemo.id = this.createMemoId(createMemo);
-    memoStorage.push(createMemo);
+    this.memoStorage.push(createMemo);
     return createMemo;
   }
   updateMemo(memo: MemoDto): MemoDto {
     const findMemo = this.findMemoById(memo.id);
-    let index = memoStorage.indexOf(findMemo);
+    let index = this.memoStorage.indexOf(findMemo);
     if(findMemo) {
-      memoStorage[index] = memo;
+      this.memoStorage[index] = memo;
       return memo
     }
     throw new NotFoundException(`memo Object to be updated not found`);
   }
   deleteMemo(id: string): MemoDto {
-    const memo = this.findMemoById(id);
-    const index = memoStorage.indexOf(memo);
+    let memo = this.findMemoById(id);
+    const index = this.memoStorage.indexOf(memo);
     if(index > -1 ) {
-      memoStorage.splice(index, 1);
+      this.memoStorage.splice(index, 1);
       return memo;
     }
     throw new NotFoundException(`memo with id ${id} not found`);
@@ -53,7 +53,7 @@ export class MemoService {
    * @returns memoDto of the searched memo or undefined
    */
   private findMemoById(id: string): MemoDto | undefined {
-    return memoStorage.find(e => e.id === id);
+    return this.memoStorage.find(e => e.id === id);
   }
   /**
    * Creates a somewhat unique id for the memo by using the memo itself and currentdate in MS
