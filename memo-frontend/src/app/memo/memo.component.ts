@@ -50,17 +50,17 @@ export class MemoComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
   onSubmit() {
-    console.warn(this.memoForm.value);
     this.memoService.createMemo(this.memoForm.value).pipe(first()).subscribe(memo => {
       this.memos.push(memo);
       this.snackbar.open(`Memo mit ID${memo.id} erstellt`);
-    });
+    }, error => this.snackbar.open(error));
   }
   delete(id: string) {
     this.memoService.deleteMemo(id).pipe(takeUntil(this.destroy$)).subscribe(memo => {
       this.repeat$.next();
       this.snackbar.open(`Memo mit ID${memo.id} gelöscht`);
-    })
+    }, error => this.snackbar.open(error)
+    )
   }
 
   openDialog(id: string): void {
@@ -79,11 +79,8 @@ export class MemoComponent implements OnInit, OnDestroy {
       this.snackbar.open(`Memo mit ID${e.id} erfolgreich editiert`);
       this.repeat$.next();
     },
-    error => this.handleError(error)
+    error => this.snackbar.open(error)
     )
-  }
-  handleError(error: any) {
-    this.snackbar.open(error);
   }
 }
 

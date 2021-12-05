@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { environment } from 'src/environments/environment';
 
 import { EnvironmentService } from './environment.service';
 
@@ -13,4 +14,10 @@ describe('EnvironmentService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should receive the correct environment',() => {
+    expect(service.apiHost).toBe(environment.apiHost);
+    expect(service.production).toBe(environment.production);
+  })
+
 });

@@ -1,4 +1,11 @@
+import { CommonModule } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { of } from 'rxjs';
+
 
 import { MemoComponent } from './memo.component';
 
@@ -8,7 +15,17 @@ describe('MemoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MemoComponent ]
+      declarations: [ MemoComponent ],
+      imports: [
+        HttpClientTestingModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        CommonModule
+      ],
+      providers: [
+        FormBuilder,
+        ReactiveFormsModule,
+      ]
     })
     .compileComponents();
   });

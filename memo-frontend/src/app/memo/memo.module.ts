@@ -8,6 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EditMemoDialogComponent } from './dialogue/edit-memo-dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { EditMemoDialogComponent } from './dialogue/edit-memo-dialog';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule,
   ],
   exports: [
     MemoComponent
