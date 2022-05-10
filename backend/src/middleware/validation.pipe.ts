@@ -1,8 +1,13 @@
-
-import { PipeTransform, Injectable, ArgumentMetadata, BadRequestException } from '@nestjs/common';
+import {
+  PipeTransform,
+  Injectable,
+  ArgumentMetadata,
+  BadRequestException,
+} from '@nestjs/common';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 
+//TODO: more typesafety add max characters validationPipe in separate file
 @Injectable()
 export class ClassValidationPipe implements PipeTransform<any> {
   async transform(value: any, { metatype }: ArgumentMetadata) {
@@ -12,7 +17,7 @@ export class ClassValidationPipe implements PipeTransform<any> {
     const object = plainToClass(metatype, value);
     const errors = await validate(object);
     if (errors.length > 0) {
-        console.warn(errors);
+      console.warn(errors);
       throw new BadRequestException('Validation failed');
     }
     return value;

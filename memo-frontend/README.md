@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.12.
 
+WARNING Frontend is pretty ugly and wasn't the focus of the "challenge" but it should give you enough insight
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

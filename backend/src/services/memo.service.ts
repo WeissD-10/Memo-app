@@ -1,21 +1,20 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateMemoDto, MemoDto } from 'src/dtos/memo-dto';
-
-var md5 = require('md5');
+import  md5 = require('md5');
 
 @Injectable()
 export class MemoService {
   memoStorage = new Array<MemoDto>();
 
-  getMemos(): MemoDto[]{
+  getMemos(): MemoDto[] {
     return this.memoStorage;
   }
 
   getMemoById(id: string): MemoDto {
     const foundMemo = this.findMemoById(id);
-    if(foundMemo) {
+    if (foundMemo) {
       return foundMemo;
-    } 
+    }
     throw new NotFoundException(`memo with id ${id} not found`);
   }
   /**
@@ -31,29 +30,29 @@ export class MemoService {
   }
   updateMemo(memo: MemoDto): MemoDto {
     const findMemo = this.findMemoById(memo.id);
-    let index = this.memoStorage.indexOf(findMemo);
-    if(findMemo) {
+    const index = this.memoStorage.indexOf(findMemo);
+    if (findMemo) {
       this.memoStorage[index] = memo;
-      return memo
+      return memo;
     }
     throw new NotFoundException(`memo Object to be updated not found`);
   }
   deleteMemo(id: string): MemoDto {
-    let memo = this.findMemoById(id);
+    const memo = this.findMemoById(id);
     const index = this.memoStorage.indexOf(memo);
-    if(index > -1 ) {
+    if (index > -1) {
       this.memoStorage.splice(index, 1);
       return memo;
     }
     throw new NotFoundException(`memo with id ${id} not found`);
   }
   /**
-   * searches for a memo by id, in this usecase it wouldn't be necessary to separate the function 
+   * searches for a memo by id, in this usecase it wouldn't be necessary to separate the function
    * @param id id of the memo
    * @returns memoDto of the searched memo or undefined
    */
   private findMemoById(id: string): MemoDto | undefined {
-    return this.memoStorage.find(e => e.id === id);
+    return this.memoStorage.find((e) => e.id === id);
   }
   /**
    * Creates a somewhat unique id for the memo by using the memo itself and currentdate in MS
@@ -62,6 +61,6 @@ export class MemoService {
    */
   private createMemoId(memo: MemoDto) {
     const currentDate = Date.now().toString();
-    return memo.id = md5(JSON.stringify(memo).concat(currentDate));
+    return (memo.id = md5(JSON.stringify(memo).concat(currentDate)));
   }
 }

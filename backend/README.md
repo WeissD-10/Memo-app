@@ -21,10 +21,10 @@
 </p>
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
+n
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Small "show" repo. 4 hours work, CRUD API focus, Anything marked with "TODO:" would be my next step if i would be without timelimit
 
 ## Installation
 
